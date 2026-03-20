@@ -66,7 +66,7 @@ A backend REST API for managing users and their tasks, built using Spring Boot.
   "description": "Complete Task Manager project",
   "completed": false
 }
-
+```
 ⚙️ Setup Instructions
 
 Clone the repo
