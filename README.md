@@ -71,7 +71,7 @@ A backend REST API for managing users and their tasks, built using Spring Boot.
 
 Clone the repo
 
-git clone https://github.com/<your-username>/task-manager.git
+git clone https://github.com/your-username/task-manager.git
 
 Configure MySQL in application.properties
 
