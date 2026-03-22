@@ -2,6 +2,7 @@ package com.mathesh.taskmanager.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -46,10 +47,12 @@ public class User {
     public String getUsername(){
         return username;
     }
-    public String getEmail(){
+
+    public String getEmail() {
         return email;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }

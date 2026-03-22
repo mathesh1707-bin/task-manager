@@ -2,6 +2,7 @@ package com.mathesh.taskmanager.service;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mathesh.taskmanager.model.User;
@@ -10,12 +11,16 @@ import com.mathesh.taskmanager.repository.UserRepository;
 @Service
 public class UserService {
     private UserRepository repo;
+    private PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository repo) {
+    public UserService(UserRepository repo,PasswordEncoder passwordEncoder) {
         this.repo = repo;
+        this.passwordEncoder=passwordEncoder;
     }
+    
 
     public User registerUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repo.save(user);
     }
 
@@ -35,7 +40,9 @@ public class UserService {
         User existing_user = repo.findById(id).orElseThrow(()-> new RuntimeException("User not found"));
         existing_user.setEmail(user.getEmail());
         existing_user.setUsername(user.getUsername());
-        existing_user.setPassword(user.getPassword());
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+        existing_user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         return repo.save(existing_user);
     }
 
