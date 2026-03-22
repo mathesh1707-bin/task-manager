@@ -3,6 +3,7 @@ package com.mathesh.taskmanager.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mathesh.taskmanager.dto.LoginRequest;
 import com.mathesh.taskmanager.model.User;
 import com.mathesh.taskmanager.service.UserService;
 
@@ -24,6 +25,11 @@ public class UserController {
     public UserController(UserService service) {
         this.service = service;
     }
+    @PostMapping("/login")
+    public User login(@RequestBody LoginRequest request) {
+        return service.LoginUser(request);
+    }
+    
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) {
         return service.registerUser(user);
